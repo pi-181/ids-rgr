@@ -20,11 +20,11 @@ public class Main {
         long singleTime = 0;
         for (int i = 1; i <= PARALLELISM; i++) {
             long time = 0;
-            for (int j = 0; j < TESTS; j++)
+            for (int j = 0; j < TESTS; j++) {
+                Runtime.getRuntime().gc();
                 time += benchmark(i, ARRAY_SIZE, 1000);
+            }
             time = time / TESTS;
-
-            Runtime.getRuntime().gc();
 
             if (i == 1)
                 singleTime = time;
